@@ -4,6 +4,7 @@ import {
   PLAY_HAPPY_RESTORE, PLAY_HUNGER_COST, PLAY_XP, PLAY_COOLDOWN_MS,
   WALK_HAPPY_RESTORE, WALK_HUNGER_COST, WALK_XP, WALK_COOLDOWN_MS,
   XP_PER_STAGE, MAX_STAGE, MAX_CATCHUP_MINUTES,
+  FEED_BOND, PLAY_BOND, WALK_BOND,
 } from './constants';
 
 export function defaultState() {
@@ -11,6 +12,7 @@ export function defaultState() {
   return {
     stage: 0,
     growthXP: 0,
+    bond: 0,
     hunger: 1.0,
     happiness: 1.0,
     health: 1.0,
@@ -52,6 +54,7 @@ export function applyFeed(state, nowMs) {
     hunger:    Math.min(1.0, state.hunger    + FEED_HUNGER_RESTORE),
     happiness: Math.min(1.0, state.happiness + FEED_HAPPY_RESTORE),
     growthXP:  Math.min(XP_PER_STAGE, state.growthXP + FEED_XP),
+    bond:      state.bond + FEED_BOND,
     lastFedTime: nowMs,
   };
   return evolve(next);
@@ -64,6 +67,7 @@ export function applyPlay(state, nowMs) {
     happiness: Math.min(1.0, state.happiness + PLAY_HAPPY_RESTORE),
     hunger:    Math.max(0,   state.hunger    - PLAY_HUNGER_COST),
     growthXP:  Math.min(XP_PER_STAGE, state.growthXP + PLAY_XP),
+    bond:      state.bond + PLAY_BOND,
     lastPlayTime: nowMs,
   };
   return evolve(next);
@@ -76,6 +80,7 @@ export function applyWalk(state, nowMs) {
     happiness: Math.min(1.0, state.happiness + WALK_HAPPY_RESTORE),
     hunger:    Math.max(0,   state.hunger    - WALK_HUNGER_COST),
     growthXP:  Math.min(XP_PER_STAGE, state.growthXP + WALK_XP),
+    bond:      state.bond + WALK_BOND,
     lastWalkTime: nowMs,
   };
   return evolve(next);

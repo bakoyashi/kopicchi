@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { STORAGE_KEY, TICK_INTERVAL_MS, MAX_STAGE } from './constants';
+import { STORAGE_KEY, TICK_INTERVAL_MS, MAX_STAGE, FEED_BOND, PLAY_BOND, WALK_BOND } from './constants';
 import { defaultState, applyDecay, applyFeed, applyPlay, applyWalk } from './gameLogic';
 import { playFeedSound, playPlaySound, playWalkSound, playLevelUpSound } from './sounds';
 
@@ -32,6 +32,10 @@ export function useGameState() {
   const [animation, setAnimation] = useState(null);
   const animTimerRef = useRef(null);
 
+  // bondGain: null | number — shows floating "+N 💕" for 1.5 s
+  const [bondGain, setBondGain] = useState(null);
+  const bondTimerRef = useRef(null);
+
   const setState = useCallback((updater) => {
     setStateRaw(prev => {
       const next = typeof updater === 'function' ? updater(prev) : updater;
@@ -48,10 +52,16 @@ export function useGameState() {
     return () => clearInterval(id);
   }, [setState]);
 
-  function triggerAnimation(name) {
+  function triggerAnimation(name, bond = 0) {
     clearTimeout(animTimerRef.current);
     setAnimation(name);
     animTimerRef.current = setTimeout(() => setAnimation(null), 900);
+    // Floating bond gain popup
+    if (bond > 0) {
+      clearTimeout(bondTimerRef.current);
+      setBondGain(bond);
+      bondTimerRef.current = setTimeout(() => setBondGain(null), 1400);
+    }
     // Play matching bark sound
     if      (name === 'evolve') playLevelUpSound();
     else if (name === 'feed')   playFeedSound();
@@ -65,8 +75,8 @@ export function useGameState() {
       const prevStage = s.stage;
       const next = applyFeed(s, now);
       if (!next) return s; // on cooldown
-      if (next.stage > prevStage) triggerAnimation('evolve');
-      else triggerAnimation('feed');
+      if (next.stage > prevStage) triggerAnimation('evolve', FEED_BOND);
+      else triggerAnimation('feed', FEED_BOND);
       return next;
     });
   }, [setState]);
@@ -77,8 +87,8 @@ export function useGameState() {
       const prevStage = s.stage;
       const next = applyPlay(s, now);
       if (!next) return s;
-      if (next.stage > prevStage) triggerAnimation('evolve');
-      else triggerAnimation('play');
+      if (next.stage > prevStage) triggerAnimation('evolve', PLAY_BOND);
+      else triggerAnimation('play', PLAY_BOND);
       return next;
     });
   }, [setState]);
@@ -89,8 +99,8 @@ export function useGameState() {
       const prevStage = s.stage;
       const next = applyWalk(s, now);
       if (!next) return s;
-      if (next.stage > prevStage) triggerAnimation('evolve');
-      else triggerAnimation('walk');
+      if (next.stage > prevStage) triggerAnimation('evolve', WALK_BOND);
+      else triggerAnimation('walk', WALK_BOND);
       return next;
     });
   }, [setState]);
@@ -101,5 +111,5 @@ export function useGameState() {
     setAnimation(null);
   }, []);
 
-  return { state, animation, feedDog, playWithDog, walkDog, resetGame };
+  return { state, animation, bondGain, feedDog, playWithDog, walkDog, resetGame };
 }

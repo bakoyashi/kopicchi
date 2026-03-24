@@ -68,6 +68,11 @@
   box-shadow: var(--shadow-card);
 }
 
+/* Bond meter */
+.bond-section {
+  width: 100%;
+}
+
 /* Actions */
 .actions-section {
   width: 100%;

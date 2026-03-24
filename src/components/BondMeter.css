@@ -1,0 +1,88 @@
+.bond-meter {
+  width: 100%;
+  background: var(--color-card-bg);
+  border-radius: var(--radius-xl);
+  padding: 12px 18px;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.bond-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+}
+
+.bond-icon {
+  font-size: 1.15rem;
+}
+
+.bond-label {
+  font-size: 0.85rem;
+  font-weight: 900;
+  color: var(--color-text);
+}
+
+.bond-level {
+  font-size: 0.95rem;
+  font-weight: 900;
+  color: #e84393;
+  background: #fde8f3;
+  border-radius: 999px;
+  padding: 1px 9px;
+}
+
+.bond-total {
+  margin-left: auto;
+  font-size: 0.78rem;
+  color: #999;
+  font-weight: 700;
+}
+
+/* Floating "+N 💕" that rises and fades */
+.bond-gain {
+  position: absolute;
+  right: 0;
+  top: -4px;
+  font-size: 0.9rem;
+  font-weight: 900;
+  color: #e84393;
+  pointer-events: none;
+  animation: bond-float 1.4s ease-out forwards;
+}
+
+@keyframes bond-float {
+  0%   { opacity: 1;   transform: translateY(0)     scale(1); }
+  20%  { opacity: 1;   transform: translateY(-6px)  scale(1.2); }
+  100% { opacity: 0;   transform: translateY(-28px) scale(0.9); }
+}
+
+/* Progress track */
+.bond-track {
+  position: relative;
+  height: 12px;
+  background: #f0d0e4;
+  border-radius: 999px;
+  overflow: visible;
+}
+
+.bond-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #f472b6, #e84393);
+  transition: width 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.bond-next-hint {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.62rem;
+  color: #c0607a;
+  font-weight: 700;
+  pointer-events: none;
+}

@@ -24,6 +24,12 @@ export const WALK_COOLDOWN_MS     = 10_000; // 10 sec
 export const XP_PER_STAGE         = 20;
 export const MAX_STAGE            = 3;
 
+// ── Bond (きずな) – unbounded, never decreases ────────────────────────────────
+export const FEED_BOND            = 3;
+export const PLAY_BOND            = 5;
+export const WALK_BOND            = 7;
+export const BOND_PER_LEVEL       = 20;
+
 // ── Catch-up cap ──────────────────────────────────────────────────────────────
 export const MAX_CATCHUP_MINUTES  = 30; // 30 min
 

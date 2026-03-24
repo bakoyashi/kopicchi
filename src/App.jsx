@@ -3,12 +3,13 @@ import DogSprite     from './components/DogSprite';
 import StatsPanel    from './components/StatsPanel';
 import ActionsPanel  from './components/ActionsPanel';
 import GrowthMeter   from './components/GrowthMeter';
+import BondMeter     from './components/BondMeter';
 import EvolveOverlay from './components/EvolveOverlay';
 import { STAGES }    from './constants';
 import './styles/App.css';
 
 export default function App() {
-  const { state, animation, feedDog, playWithDog, walkDog, resetGame } = useGameState();
+  const { state, animation, bondGain, feedDog, playWithDog, walkDog, resetGame } = useGameState();
   const stageInfo = STAGES[state.stage];
 
   return (
@@ -37,6 +38,10 @@ export default function App() {
           happiness={state.happiness}
           health={state.health}
         />
+      </section>
+
+      <section className="bond-section">
+        <BondMeter bond={state.bond} bondGain={bondGain} />
       </section>
 
       <section className="actions-section">
