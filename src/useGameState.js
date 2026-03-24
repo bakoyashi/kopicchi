@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { STORAGE_KEY, TICK_INTERVAL_MS, MAX_STAGE } from './constants';
 import { defaultState, applyDecay, applyFeed, applyPlay, applyWalk } from './gameLogic';
+import { playFeedSound, playPlaySound, playWalkSound, playLevelUpSound } from './sounds';
 
 function loadState() {
   try {
@@ -51,6 +52,11 @@ export function useGameState() {
     clearTimeout(animTimerRef.current);
     setAnimation(name);
     animTimerRef.current = setTimeout(() => setAnimation(null), 900);
+    // Play matching bark sound
+    if      (name === 'evolve') playLevelUpSound();
+    else if (name === 'feed')   playFeedSound();
+    else if (name === 'play')   playPlaySound();
+    else if (name === 'walk')   playWalkSound();
   }
 
   const feedDog = useCallback(() => {
