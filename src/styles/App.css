@@ -16,7 +16,25 @@
 .app-header {
   width: 100%;
   text-align: center;
+  position: relative;
 }
+
+.reset-btn {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: 1.5px solid var(--stage-color, #999);
+  color: var(--stage-color, #999);
+  border-radius: 20px;
+  padding: 4px 10px;
+  font-size: 0.72rem;
+  cursor: pointer;
+  opacity: 0.65;
+  transition: opacity 0.2s;
+}
+.reset-btn:hover { opacity: 1; }
 
 .app-title {
   font-size: 2rem;

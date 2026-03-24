@@ -89,5 +89,11 @@ export function useGameState() {
     });
   }, [setState]);
 
-  return { state, animation, feedDog, playWithDog, walkDog };
+  const resetGame = useCallback(() => {
+    localStorage.removeItem(STORAGE_KEY);
+    setStateRaw(defaultState());
+    setAnimation(null);
+  }, []);
+
+  return { state, animation, feedDog, playWithDog, walkDog, resetGame };
 }

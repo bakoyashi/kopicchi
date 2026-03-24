@@ -8,7 +8,7 @@ import { STAGES }    from './constants';
 import './styles/App.css';
 
 export default function App() {
-  const { state, animation, feedDog, playWithDog, walkDog } = useGameState();
+  const { state, animation, feedDog, playWithDog, walkDog, resetGame } = useGameState();
   const stageInfo = STAGES[state.stage];
 
   return (
@@ -20,6 +20,7 @@ export default function App() {
 
       <header className="app-header">
         <h1 className="app-title">コピっち</h1>
+        <button className="reset-btn" onClick={resetGame} title="ゲームをリセット">↩ reset</button>
       </header>
 
       <section className="growth-section">
