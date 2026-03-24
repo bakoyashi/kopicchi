@@ -22,7 +22,7 @@ export const WALK_COOLDOWN_MS     = 10_000; // 10 sec
 
 // ── Growth ────────────────────────────────────────────────────────────────────
 export const XP_PER_STAGE         = 20;
-export const MAX_STAGE            = 4;
+export const MAX_STAGE            = 3;
 
 // ── Catch-up cap ──────────────────────────────────────────────────────────────
 export const MAX_CATCHUP_MINUTES  = 30; // 30 min
@@ -35,9 +35,8 @@ export const STORAGE_KEY          = 'kopicchi_state';
 
 // ── Stage names & colors (for UI labels) ─────────────────────────────────────
 export const STAGES = [
-  { name: 'たまご',    emoji: '🥚', primaryColor: '#5b9bd5', bgColor: '#e8f4fd' },
-  { name: 'あかちゃん', emoji: '🐾', primaryColor: '#5ab8c8', bgColor: '#e4f7f9' },
-  { name: 'こいぬ',    emoji: '🐶', primaryColor: '#4dd0c4', bgColor: '#e0f9f7' },
-  { name: 'わんこ',    emoji: '🐕', primaryColor: '#4dc47a', bgColor: '#e2f9ec' },
-  { name: 'おとなのいぬ', emoji: '🦮', primaryColor: '#52c45c', bgColor: '#e4fae6' },
+  { name: 'たまご',      emoji: '🥚', primaryColor: '#d4873e', bgColor: '#fdf3e7' },
+  { name: 'あかちゃん',   emoji: '🐾', primaryColor: '#c8956a', bgColor: '#fdf0e8' },
+  { name: 'こいぬ',      emoji: '🐶', primaryColor: '#e87ab0', bgColor: '#fde8f3' },
+  { name: 'おとなのいぬ', emoji: '🦮', primaryColor: '#d03030', bgColor: '#fde8e8' },
 ];
