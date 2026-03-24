@@ -30,6 +30,18 @@ export const PLAY_BOND            = 5;
 export const WALK_BOND            = 7;
 export const BOND_PER_LEVEL       = 20;
 
+// ── Tired (つかれ) ────────────────────────────────────────────────────────────
+export const PLAY_TIRED_GAIN          = 0.35;  // per play action
+export const WALK_TIRED_GAIN          = 0.45;  // per walk action
+export const TIRED_DECAY_RATE         = 0.04;  // per minute (rests away)
+export const TIRED_BLOCK_THRESHOLD    = 0.70;  // can't play/walk above this
+
+// ── Overfed (たべすぎ) ────────────────────────────────────────────────────────
+export const OVERFED_GAIN             = 0.40;  // gained when feeding while too full
+export const OVERFED_DECAY_RATE       = 0.03;  // per minute (digests away)
+export const OVERFED_BLOCK_THRESHOLD  = 0.70;  // can't eat above this
+export const OVERFED_HUNGER_TRIGGER   = 0.70;  // hunger level that starts overfed penalty
+
 // ── Catch-up cap ──────────────────────────────────────────────────────────────
 export const MAX_CATCHUP_MINUTES  = 30; // 30 min
 

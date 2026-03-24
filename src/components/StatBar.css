@@ -27,7 +27,12 @@
   min-width: 4px;
 }
 
-/* Pulse red when stat is critically low */
+/* Danger bars have a light-grey track to keep them visually distinct */
+.stat-track-danger {
+  background: #ebebeb;
+}
+
+/* Pulse when stat is critically low (positive stats) */
 @keyframes stat-pulse {
   0%, 100% { opacity: 1; }
   50%       { opacity: 0.4; }
@@ -39,4 +44,12 @@
 .stat-low .stat-fill {
   background: #ef476f !important;
   animation: stat-pulse 0.8s ease-in-out infinite;
+}
+
+/* Pulse when danger stat is critically high */
+.stat-high .stat-icon {
+  animation: stat-pulse 0.7s ease-in-out infinite;
+}
+.stat-high .stat-fill {
+  animation: stat-pulse 0.7s ease-in-out infinite;
 }

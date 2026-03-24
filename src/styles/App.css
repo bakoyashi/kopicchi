@@ -50,13 +50,15 @@
   width: 100%;
 }
 
-/* Dog sprite */
+/* Dog sprite + speech bubble */
 .sprite-section {
   flex: 1;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 180px;
+  gap: 8px;
+  min-height: 200px;
 }
 
 /* Stats */

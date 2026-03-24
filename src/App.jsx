@@ -4,6 +4,7 @@ import StatsPanel    from './components/StatsPanel';
 import ActionsPanel  from './components/ActionsPanel';
 import GrowthMeter   from './components/GrowthMeter';
 import BondMeter     from './components/BondMeter';
+import SpeechBubble  from './components/SpeechBubble';
 import EvolveOverlay from './components/EvolveOverlay';
 import { STAGES }    from './constants';
 import './styles/App.css';
@@ -29,6 +30,7 @@ export default function App() {
       </section>
 
       <section className="sprite-section">
+        <SpeechBubble state={state} />
         <DogSprite stage={state.stage} animation={animation} />
       </section>
 
@@ -37,6 +39,8 @@ export default function App() {
           hunger={state.hunger}
           happiness={state.happiness}
           health={state.health}
+          tired={state.tired ?? 0}
+          overfed={state.overfed ?? 0}
         />
       </section>
 
