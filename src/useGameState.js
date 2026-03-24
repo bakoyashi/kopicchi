@@ -1,11 +1,16 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { STORAGE_KEY, TICK_INTERVAL_MS } from './constants';
+import { STORAGE_KEY, TICK_INTERVAL_MS, MAX_STAGE } from './constants';
 import { defaultState, applyDecay, applyFeed, applyPlay, applyWalk } from './gameLogic';
 
 function loadState() {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    if (raw) return { ...defaultState(), ...JSON.parse(raw) };
+    if (raw) {
+      const saved = JSON.parse(raw);
+      // Clamp stage in case an older save has a higher stage count
+      if (saved.stage > MAX_STAGE) saved.stage = MAX_STAGE;
+      return { ...defaultState(), ...saved };
+    }
   } catch (_) { /* ignore */ }
   return defaultState();
 }
