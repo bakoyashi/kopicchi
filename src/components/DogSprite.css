@@ -1,0 +1,53 @@
+.dog-sprite-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: dog-idle-bob 1.6s ease-in-out infinite;
+}
+
+.dog-canvas {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  width: 200px;
+  height: 200px;
+}
+
+/* Idle bob */
+@keyframes dog-idle-bob {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-6px); }
+}
+
+/* Action animations */
+@keyframes dog-feed-anim {
+  0%   { transform: scale(1); }
+  30%  { transform: scale(1.18) rotate(-4deg); }
+  60%  { transform: scale(1.12) rotate(4deg); }
+  100% { transform: scale(1) rotate(0); }
+}
+@keyframes dog-play-anim {
+  0%   { transform: rotate(0); }
+  20%  { transform: rotate(-8deg) scale(1.1); }
+  50%  { transform: rotate(8deg) scale(1.15); }
+  80%  { transform: rotate(-4deg) scale(1.05); }
+  100% { transform: rotate(0) scale(1); }
+}
+@keyframes dog-walk-anim {
+  0%   { transform: translateX(0); }
+  25%  { transform: translateX(-10px) rotate(-3deg); }
+  50%  { transform: translateX(10px) rotate(3deg); }
+  75%  { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+@keyframes dog-evolve-anim {
+  0%   { transform: scale(1);    filter: brightness(1); }
+  20%  { transform: scale(1.4);  filter: brightness(3); }
+  50%  { transform: scale(0.9);  filter: brightness(1.5) hue-rotate(40deg); }
+  80%  { transform: scale(1.15); filter: brightness(2); }
+  100% { transform: scale(1);    filter: brightness(1); }
+}
+
+.dog-anim-feed   { animation: dog-feed-anim   0.9s ease forwards; }
+.dog-anim-play   { animation: dog-play-anim   0.9s ease forwards; }
+.dog-anim-walk   { animation: dog-walk-anim   0.9s ease forwards; }
+.dog-anim-evolve { animation: dog-evolve-anim 0.9s ease forwards; }

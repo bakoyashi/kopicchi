@@ -1,0 +1,62 @@
+.evolve-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 247, 0, 0.25);
+  backdrop-filter: brightness(1.4);
+  z-index: 100;
+  animation: overlay-fade 0.9s ease forwards;
+  pointer-events: none;
+}
+
+@keyframes overlay-fade {
+  0%   { opacity: 0; }
+  20%  { opacity: 1; }
+  80%  { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.evolve-text {
+  font-family: 'Nunito', sans-serif;
+  font-size: 2.4rem;
+  font-weight: 900;
+  color: #f7b731;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.2);
+  animation: evolve-text-pop 0.9s ease forwards;
+}
+
+@keyframes evolve-text-pop {
+  0%   { transform: scale(0.5); opacity: 0; }
+  40%  { transform: scale(1.3); opacity: 1; }
+  100% { transform: scale(1);   opacity: 1; }
+}
+
+.evolve-stars {
+  position: absolute;
+  inset: 0;
+}
+
+.evolve-star {
+  position: absolute;
+  font-size: 2rem;
+  top: 50%;
+  left: 50%;
+  animation: star-fly 0.9s ease forwards;
+  animation-delay: calc(var(--i) * 0.08s);
+}
+
+@keyframes star-fly {
+  0%   { transform: translate(-50%, -50%) scale(0) rotate(0deg); opacity: 1; }
+  100% {
+    transform:
+      translate(
+        calc(-50% + (var(--i) * 45deg - 180deg) * 1px * 2.5),
+        calc(-50% - 120px + (var(--i) * 30px))
+      )
+      scale(1.5) rotate(360deg);
+    opacity: 0;
+  }
+}
