@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { useGameState } from './useGameState';
 import DogSprite     from './components/DogSprite';
 import StatsPanel    from './components/StatsPanel';
@@ -9,8 +10,16 @@ import EvolveOverlay from './components/EvolveOverlay';
 import { STAGES }    from './constants';
 import './styles/App.css';
 
+const ACTION_EMOJI = { feed: '🍖', play: '🎾', walk: '🐾' };
+
 export default function App() {
   const { state, animation, bondGain, feedDog, playWithDog, walkDog, resetGame } = useGameState();
+
+  // Increment key each time a non-evolve action fires to re-mount the particle
+  const [particleKey, setParticleKey] = useState(0);
+  useEffect(() => {
+    if (animation && animation !== 'evolve') setParticleKey(k => k + 1);
+  }, [animation]);
   const stageInfo = STAGES[state.stage];
 
   return (
@@ -31,7 +40,14 @@ export default function App() {
 
       <section className="sprite-section">
         <SpeechBubble state={state} />
-        <DogSprite stage={state.stage} animation={animation} />
+        <div className="sprite-action-area">
+          {animation && ACTION_EMOJI[animation] && (
+            <span className="action-particle" key={particleKey}>
+              {ACTION_EMOJI[animation]}
+            </span>
+          )}
+          <DogSprite stage={state.stage} animation={animation} />
+        </div>
       </section>
 
       <section className="stats-section">

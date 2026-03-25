@@ -55,7 +55,7 @@ export function useGameState() {
   function triggerAnimation(name, bond = 0) {
     clearTimeout(animTimerRef.current);
     setAnimation(name);
-    animTimerRef.current = setTimeout(() => setAnimation(null), 900);
+    animTimerRef.current = setTimeout(() => setAnimation(null), 1100);
     // Floating bond gain popup
     if (bond > 0) {
       clearTimeout(bondTimerRef.current);

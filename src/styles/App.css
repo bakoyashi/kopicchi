@@ -61,6 +61,33 @@
   min-height: 200px;
 }
 
+/* Wrapper that holds the dog + the floating emoji particle */
+.sprite-action-area {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Floating emoji that bursts up on each action */
+.action-particle {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2.4rem;
+  pointer-events: none;
+  z-index: 10;
+  animation: particle-burst 1.1s ease-out forwards;
+}
+
+@keyframes particle-burst {
+  0%   { opacity: 1;   transform: translateX(-50%) translateY(0)    scale(1.0); }
+  15%  { opacity: 1;   transform: translateX(-50%) translateY(-10px) scale(1.6); }
+  60%  { opacity: 0.9; transform: translateX(-50%) translateY(-50px) scale(1.2); }
+  100% { opacity: 0;   transform: translateX(-50%) translateY(-80px) scale(0.7); }
+}
+
 /* Stats */
 .stats-section {
   width: 100%;
